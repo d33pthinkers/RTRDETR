@@ -58,7 +58,7 @@ class RTDETRPostProcessor(nn.Module):
             boxes = bbox_pred.gather(
                 dim=1, index=index.unsqueeze(-1).repeat(1, 1, bbox_pred.shape[-1])
             )
-
+            angles = torch.gather(angles, dim=1, index=index)
         else:
             scores = F.softmax(logits)[:, :, :-1]
             scores, labels = scores.max(dim=-1)
