@@ -154,7 +154,6 @@ class SetCriterion(nn.Module):
 
         # Normalize the loss by the number of non-zero elements to avoid skewing the loss value
         num_nonzero = mask.sum()
-        print("num_nonzero", num_nonzero)
 
         if num_nonzero > 0:
             loss = loss / num_nonzero

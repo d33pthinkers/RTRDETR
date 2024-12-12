@@ -146,12 +146,12 @@ def test_rtdetr_r18vd_6x_coco_yml():
                     "ops": [
                         {"p": 0.8, "type": "RandomPhotometricDistort"},
                         {"fill": 0, "type": "RandomZoomOut"},
-                        {"p": 0.8, "type": "RandomIoUCrop"},
+                        {"type": "RandomIoUCrop"},
                         {"min_size": 1, "type": "SanitizeBoundingBox"},
                         {"type": "RandomHorizontalFlip"},
                         {"size": [640, 640], "type": "Resize"},
-                        {"type": "ToImageTensor"},
-                        {"type": "ConvertDtype"},
+                        {"type": "ToImage"},
+                        {"type": "ToDtype"},
                         {"min_size": 1, "type": "SanitizeBoundingBox"},
                         {"normalize": True, "out_fmt": "cxcywh", "type": "ConvertBox"},
                     ],
@@ -176,8 +176,8 @@ def test_rtdetr_r18vd_6x_coco_yml():
                 "transforms": {
                     "ops": [
                         {"size": [640, 640], "type": "Resize"},
-                        {"type": "ToImageTensor"},
-                        {"type": "ConvertDtype"},
+                        {"type": "ToImage"},
+                        {"type": "ToDtype"},
                     ],
                     "type": "Compose",
                 },
