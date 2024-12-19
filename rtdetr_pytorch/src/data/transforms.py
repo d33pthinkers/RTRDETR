@@ -24,7 +24,7 @@ RandomIoUCrop = register(T.RandomIoUCrop)
 RandomHorizontalFlip = register(T.RandomHorizontalFlip)
 Resize = register(T.Resize)
 ToImage = register(T.ToImage)
-ToDtype = register(T.ToDtype)
+ConvertImageDtype = register(T.ConvertImageDtype)
 SanitizeBoundingBox = register(T.SanitizeBoundingBoxes)
 RandomCrop = register(T.RandomCrop)
 Normalize = register(T.Normalize)
@@ -39,8 +39,8 @@ class Compose(T.Compose):
             for op in ops:
                 if isinstance(op, dict):
                     name = op.pop("type")
-                    if name == "ToDtype":
-                        op["dtype"] = torch.float32
+                    # if name == "ConvertImageDtype":
+                    #     op["dtype"] = torch.float32
                     transfom = getattr(GLOBAL_CONFIG[name]["_pymodule"], name)(**op)
                     transforms.append(transfom)
                     # op['type'] = name
