@@ -20,7 +20,7 @@ __all__ = [
 
 RandomPhotometricDistort = register(T.RandomPhotometricDistort)
 RandomZoomOut = register(T.RandomZoomOut)
-RandomIoUCrop = register(T.RandomIoUCrop)
+#RandomIoUCrop = register(T.RandomIoUCrop)
 RandomHorizontalFlip = register(T.RandomHorizontalFlip)
 Resize = register(T.Resize)
 ToImage = register(T.ToImage)
@@ -39,8 +39,6 @@ class Compose(T.Compose):
             for op in ops:
                 if isinstance(op, dict):
                     name = op.pop("type")
-                    # if name == "ConvertImageDtype":
-                    #     op["dtype"] = torch.float32
                     transfom = getattr(GLOBAL_CONFIG[name]["_pymodule"], name)(**op)
                     transforms.append(transfom)
                     # op['type'] = name

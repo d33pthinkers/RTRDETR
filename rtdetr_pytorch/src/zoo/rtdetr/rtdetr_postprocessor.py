@@ -70,8 +70,7 @@ class RTDETRPostProcessor(nn.Module):
                 boxes = torch.gather(
                     boxes, dim=1, index=index.unsqueeze(-1).tile(1, 1, boxes.shape[-1])
                 )
-                angles = angles.gather(dim=1, index=index)
-                #angles = torch.gather(angles, dim=1, index=index)
+                angles = torch.gather(angles, dim=1, index=index)
 
         # TODO for onnx export
         if self.deploy_mode:
