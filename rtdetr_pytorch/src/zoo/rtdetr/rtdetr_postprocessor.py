@@ -58,7 +58,8 @@ class RTDETRPostProcessor(nn.Module):
             boxes = bbox_pred.gather(
                 dim=1, index=index.unsqueeze(-1).repeat(1, 1, bbox_pred.shape[-1])
             )
-            angles = torch.gather(angles, dim=1, index=index)
+            angles = angles.gather(dim=1, index=index)
+            #angles = torch.gather(angles, dim=1, index=index)
         else:
             scores = F.softmax(logits)[:, :, :-1]
             scores, labels = scores.max(dim=-1)
@@ -69,7 +70,8 @@ class RTDETRPostProcessor(nn.Module):
                 boxes = torch.gather(
                     boxes, dim=1, index=index.unsqueeze(-1).tile(1, 1, boxes.shape[-1])
                 )
-                angles = torch.gather(angles, dim=1, index=index)
+                angles = angles.gather(dim=1, index=index)
+                #angles = torch.gather(angles, dim=1, index=index)
 
         # TODO for onnx export
         if self.deploy_mode:
