@@ -55,7 +55,7 @@ class RotatedCocoDataset(torch.utils.data.Dataset):
             [
                 torchvision.transforms.Resize(self.input_size),
                 src.data.transforms.ToImage(),
-                src.data.transforms.ToDtype(),
+                src.data.transforms.ConvertImageDtype(),
             ]
         )
 
