@@ -20,7 +20,7 @@ class ConvNormLayer(nn.Module):
         self.act = nn.Identity() if act is None else get_activation(act) 
 
     def forward(self, x):
-        return self.act(self.norm(self.conv(x.float())))
+        return self.act(self.norm(self.conv(x)))
 
 
 class FrozenBatchNorm2d(nn.Module):
